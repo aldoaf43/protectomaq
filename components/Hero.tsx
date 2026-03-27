@@ -22,7 +22,7 @@ export default function Hero({ data }: HeroProps) {
   } = data;
 
   return (
-    <section className="relative pt-32 pb-32 flex flex-col lg:flex-row items-center px-32 overflow-hidden mx-auto bg-grid">
+    <section className="relative pt-32 pb-20 flex flex-col lg:flex-row items-center px-32 overflow-hidden mx-auto bg-grid">
       <div className="glow-spot top-[-10%] left-[-10%]" />
       <div className="glow-spot bottom-[10%] right-[-5%]" />
 
