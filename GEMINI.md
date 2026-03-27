@@ -43,22 +43,44 @@ Typography (Inter)
 - .glow-spot: Decorative radial gradients for background depth.
 - .hero-image-mask: Smooth fade for the machinery images.
 
-6. Component Status & Next Steps
+6. Sanity Architecture & Type System
 
-Current Implementation: All UI components (Navbar, Hero, Solutions, LeadMagnet, Footer) are built with high-fidelity styles and content from the "prueba 4" prototype.
+We follow a strictly typed, section-based architecture for the landing page.
+
+- **Type Safety**: All Sanity data must be typed in `types/sanity.ts`.
+- **Section Pattern**: The landing page uses a `sections` array. Each section must extend `SectionBase` and be part of the `PageSection` union.
+  ```typescript
+  interface SectionBase { _key: string; _type: string; }
+  export type PageSection = HeroSection | SolutionsSection | LeadMagnetSection;
+  export type PagePayload = {
+    _id: string;
+    sections?: PageSection[];
+    // ... other global page fields (seo, formDialog)
+  }
+  ```
+- **Dynamic Icons**: Icons from `lucide-react` are stored as strings in Sanity and typed as `keyof typeof dynamicIconImports`.
+- **Fetching**: Use `lib/sanity/fetch.ts` for cached Server Component data fetching and `lib/sanity/queries.ts` for GROQ queries.
+
+7. Component Status & Next Steps
+
+Current Implementation: 
+- UI components (Navbar, Hero, Solutions, LeadMagnet, Footer) are styled.
+- Sanity schema for `landingPage` and `solution` defined.
+- TypeScript interfaces established in `types/sanity.ts`.
+- Fetching logic and GROQ queries initialized in `lib/sanity/`.
 
 Upcoming Strategic Tasks:
-1. Sanity Client Integration: Setup `client.ts` to fetch dynamic content. All hardcoded strings in components must be replaced with data from Sanity.
-2. Lead Generation System:
+1. **Dynamic Component Mapping**: Update `app/page.tsx` to iterate over `sections` from `PagePayload` and render the corresponding UI components using a switcher pattern.
+2. **Prop Integration**: Refactor existing components (Hero, Solutions, etc.) to accept props matching their respective `PageSection` types.
+3. **Lead Generation System**:
    - Implement a Server Action to handle form submissions from LeadMagnet.tsx.
-   - (Optionally) Store leads in Sanity or send via email/webhook.
-3. Google Ads Analytics:
+   - Store leads in Sanity (schema for `lead` may be needed).
+4. **Google Ads Analytics**:
    - Implement `sendGAdsEvent` helper in `lib/analytics.ts`.
    - Track clicks on "Llamar ahora", "WhatsApp", and "RECIBIR KIT" form submissions.
-4. Image Optimization: Use `@sanity/image-url` to handle machinery images with proper sizing and automatic WebP conversion.
-5. Content Refinement: Ensure all Lucide icons are dynamically rendered based on strings stored in Sanity (as seen in Solutions.tsx).
+5. **Image Optimization**: Use `@sanity/image-url` (and the `urlForImage` utility) to handle images with proper sizing.
 
-7. Rules for Code Generation
+8. Rules for Code Generation
 
 - Mobile-First Approach (MANDATORY): Always start with base Tailwind classes for mobile. Use lg: for desktop scaling.
 - Component Purity: Keep Client Components minimal. Use 'use client' only for interactive elements (Framer Motion, Forms, Scroll effects).
