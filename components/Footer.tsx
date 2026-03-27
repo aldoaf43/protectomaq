@@ -31,7 +31,7 @@ export default function Footer({data}: FooterProps ) {
 
   return (
     <footer id="contacto" className="py-24 px-6 border-t border-white/5 bg-black">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 text-white">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16 text-white">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 mb-8">
             <div className="bg-primary p-1.5 rounded-lg shadow-lg shadow-primary/20">

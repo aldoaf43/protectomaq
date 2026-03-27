@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { FormPayload, LeadMagnetSection } from "@/types/sanity";
 import Form from "./form-element";
@@ -12,7 +12,7 @@ interface LeadMagnetProps {
 }
 
 export default function LeadMagnet({ data, form }: LeadMagnetProps) {
-  const { title, subtitle, formTitle } = data;
+  const { title, subtitle } = data;
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,12 +24,12 @@ export default function LeadMagnet({ data, form }: LeadMagnetProps) {
     <section id="kit" className="py-32 px-6 bg-zinc-950/50">
       <div className="max-w-7xl mx-auto">
         <div className="glass-card rounded-[48px] overflow-hidden grid lg:grid-cols-5 border-white/5">
-          <div className="lg:col-span-3 p-12 md:p-20 flex flex-col justify-center bg-grid">
+          <div className="lg:col-span-3 p-8 sm:p-12 md:p-16 flex flex-col justify-center bg-grid">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 italic text-white leading-[0.9]"
+              className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tighter mb-8 italic text-white leading-[0.9]"
             >
               {title || "Profesionaliza tu operación"}
             </motion.h2>
@@ -62,7 +62,7 @@ export default function LeadMagnet({ data, form }: LeadMagnetProps) {
             </div>
           </div>
 
-          <div className="lg:col-span-2 bg-primary p-12 md:p-20 flex flex-col justify-center">
+          <div className="lg:col-span-2 bg-primary p-8 sm:p-12 md:p-16 flex flex-col justify-center">
             {isSubmitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}

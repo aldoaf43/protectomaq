@@ -2,6 +2,7 @@ import { Cta } from "@/types/sanity";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { sendGAdsEvent } from "@/lib/gtag";
+import DynamicIcon from "./ui/DynamicIcon";
 
 interface CtaProps {
   cta: Cta;
@@ -20,7 +21,7 @@ export default function CtaButton({ cta, className, size }: CtaProps) {
         cta?.codeConversion ? sendGAdsEvent(cta?.codeConversion) : null
       }
     >
-      <Link href={cta.url}>{cta.text.toLocaleUpperCase()}</Link>
+      <Link href={cta.url}>{cta.text.toLocaleUpperCase()} <DynamicIcon name={cta.icon!} /> </Link>
     </Button>
   );
 }

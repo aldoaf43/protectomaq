@@ -20,17 +20,17 @@ export default function Solutions({ data }: SolutionsProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <h2 className="text-3xl sm:text-4xl xl:text-5xl font-black uppercase tracking-tighter mb-6 leading-tight text-white italic">
+              {title || "Nuestras Soluciones"}
+            </h2>
             {label && (
               <span className="text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block">
                 {label}
               </span>
             )}
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6 leading-tight text-white italic">
-              {title || "Nuestras Soluciones"}
-            </h2>
           </motion.div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid  sm:grid-cols-2 gap-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

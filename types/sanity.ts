@@ -13,6 +13,7 @@ export interface Cta {
   color?:
     | 'link'
     | 'secondary'
+    | 'dark'
     | 'destructive'
     | 'cta'
     | 'ctaOutline'
@@ -21,6 +22,7 @@ export interface Cta {
     | 'primaryOutline'
     | 'outline'
   codeConversion?: string
+  icon?: keyof typeof dynamicIconImports
 }
 
 export interface HeroSection extends SectionBase {
@@ -79,6 +81,7 @@ export type FormFieldInputType =
 export interface FormField {
   _key: string
   _type: 'formField'
+  name: string
   label?: string
   type?: FormFieldInputType
   required?: boolean
